@@ -1,0 +1,60 @@
+<div class="row vh-100">
+    <div class="col-md-12 row ">
+        <h3 class="ml-20">Upload PDF</h3>
+    </div>
+
+    <div class="ml-20 alert alert-success" *ngIf="pdfUpload === 'success'">
+        <span><strong>File uploaded successfully!!</strong>  </span>
+    </div>
+    <div class="ml-20 alert alert-success" *ngIf="pdfUpload === 'failed'">
+        <span><strong>File uploaded failed!!</strong> </span>
+        <span>Please try again.</span>
+    </div>
+
+    <div>
+        <form aria-labelledby="enable" class="width-100" name="form" role="form" #myForm="ngForm">
+            <ng-container class="mb-10 ">
+
+                <div class="mb-10 ml-20 form-group">
+                    <label class="form-control-label" for="fileName">File Name*</label>
+                    <input class="ml-10" type="text" [(ngModel)]= "fileName" name="fileName">
+                </div>
+
+                <div class="mb-10 ml-20 form-group">
+                    <label class="form-control-label" for="file">Upload
+                        File*</label>
+                    <input class="ml-10" type="file" accept="application/pdf" id="file"
+                        (change)="addFileToJson($event.target.files)">
+                    <div>
+                        <small class=" ml-10 form-text text-danger" *ngIf="!isValidPDF">
+                            Please select .pdf file and max file size is 1 MB
+                        </small>
+                    </div>
+                </div>
+                <div class="mb-10 ml-20">
+                    <button mat-raised-button color="primary" class="ml-10" (click)="uploadPdf()"
+                    [disabled]="isFormDisabled || fileName == '' ">Upload</button>
+                </div>
+            </ng-container>
+            <!-- <p>is Pdf : {{isPDF}}</p>
+            {{fileToUpload.size}} -->
+            
+        
+        </form>
+    </div>
+</div>
+
+<!-- <div class="container">
+    
+    <form>
+        <div class="form-group">
+            <label for="fileName">File Name </label><br>
+            <input type="text" name="fileName" class="form-control" ngModel>
+        </div>
+
+        <button class="btn btn-primary" type="submit">Submit</button>
+
+    </form>
+
+</div> -->
+
